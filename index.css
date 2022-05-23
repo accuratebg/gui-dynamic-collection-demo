@@ -32,7 +32,6 @@ header {
     display: block;
 }
 .chkBtn{
-
     width: 25px;
     height: 26px;
 }
@@ -46,7 +45,7 @@ header {
     background-color: #fff;
     margin-bottom: 15px;
 }
-#uploadDoc{
+#uploadDoc, #uploadDoc1 {
     color: #0d4c47;
     font-size: 15px;
     display: none;

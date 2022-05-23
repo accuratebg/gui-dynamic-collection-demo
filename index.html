@@ -23,9 +23,15 @@
           Non UK
         </label>
       </div>
-    
+
       <section id="selectOption" class="hide">
-        <input type="checkbox" id="onCheck" class="chkBtn" disabled="disabled" name="check" />
+        <input
+          type="checkbox"
+          id="onCheck"
+          class="chkBtn"
+          disabled="disabled"
+          name="check"
+        />
         <select
           class="selectDoc"
           onchange="uploadSelectedDocument('uploadDoc',this);"
@@ -57,82 +63,117 @@
             id="uploadButton"
             class="btn fileUpload btn-default"
           >
-          Upload
-          <input type="file" name="upload" id="uploaded" onchange="onFileUpload(this.value)">
-           </label>
+            Upload
+            <input
+              type="file"
+              name="upload"
+              id="uploaded"
+              onchange="onFileUpload(this.value)"
+            />
+          </label>
         </div>
 
         <div>
-        <input type="checkbox" id="onCheck1" class="chkBtn hide" disabled="disabled" name="check" />
-        <select id="subSelect" class="selectDoc hide">
-          <option value="select" selected>
-            Select proof of identity document from group-1,2a or 2b
-          </option>
-          <option value="passport photo">
-            Photograph/MRZ page of passport[any country;not expired]
-          </option>
-          <option value="residency permit">
-            Biometric residency permit[UK;Current]
-          </option>
-          <option value="driving license">
-            Driving License photocard[Current; full of provisional; UK, Isle of
-            Man or channel Island]
-          </option>
-          <option value="birth certificate">
-            Birth Certificate[UK; issued within 12 months of birth]
-          </option>
-          <option value="adoption certificate">Adoption Certificate[UK]</option>
-          <option value="current driving license">
-            Current Driving License photocard(full or provisional)
-          </option>
-          <option value="current driving license paper ">
-            Current driving license paper version (full or provisional)
-          </option>
-          <option value="birth certificate">
-            Birth certificate – issued after time of birth
-          </option>
-          <option value="marriage certificate">
-            Marriage / civil partnership certificate
-          </option>
-          <option value="immigration doc">
-            Immigration document, visa or work permit
-          </option>
-          <option value="HM forces ID">HM Forces ID card</option>
-          <option value="firearms license">Firearms license</option>
-          <option value="mortgage stmt">Mortgage statement</option>
-          <option value="bank stmt">Bank or building society statement</option>
-          <option value="bank account opening letter">
-            Bank or building society account opening letter
-          </option>
-          <option value="credit card stmt">Credit card statement</option>
-          <option value="financial stmt">
-            Financial statement (e.g. pension or endowment)
-          </option>
-          <option value="P45 or P60 stmt">P45 or P60 statement</option>
-          <option value="council tax stmt">Council tax statement</option>
-          <option value="letter of sponsorship">
-            Letter of sponsorship from future employment provider
-          </option>
-          <option value="utility bill">Utility bill</option>
-          <option value="benefit stmt ">
-            Benefit statement (e.g. Child Benefit or Pension)
-          </option>
-          <option value="govt agency doc">
-            Government agency document giving entitlement
-          </option>
-          <option value="EEA national ID card">EEA National ID card</option>
-          <option value="irish passport card">Irish Passport Card</option>
-          <option value="accreditation logo">
-            Cards carrying PASS accreditation logo
-          </option>
-          <option value="letter from authority">
-            Letter from head teacher or college principal
-          </option>
-          <option value="Non-UK bank society stmt">
-            Non-UK Bank of building society statement
-          </option>
-        </select>
-      </div>
+          <input
+            type="checkbox"
+            id="onCheck1"
+            class="chkBtn hide"
+            disabled="disabled"
+            name="check"
+          />
+          <select
+            id="subSelect"
+            class="selectDoc hide"
+            onchange="uploadSelectedDoc('uploadDoc1',this);"
+          >
+            <option value="select" selected>
+              Select proof of identity document from group-1,2a or 2b
+            </option>
+            <option value="passport photo">
+              Photograph/MRZ page of passport[any country;not expired]
+            </option>
+            <option value="residency permit">
+              Biometric residency permit[UK;Current]
+            </option>
+            <option value="driving license">
+              Driving License photocard[Current; full of provisional; UK, Isle
+              of Man or channel Island]
+            </option>
+            <option value="birth certificate">
+              Birth Certificate[UK; issued within 12 months of birth]
+            </option>
+            <option value="adoption certificate">
+              Adoption Certificate[UK]
+            </option>
+            <option value="current driving license">
+              Current Driving License photocard(full or provisional)
+            </option>
+            <option value="current driving license paper ">
+              Current driving license paper version (full or provisional)
+            </option>
+            <option value="birth certificate">
+              Birth certificate – issued after time of birth
+            </option>
+            <option value="marriage certificate">
+              Marriage / civil partnership certificate
+            </option>
+            <option value="immigration doc">
+              Immigration document, visa or work permit
+            </option>
+            <option value="HM forces ID">HM Forces ID card</option>
+            <option value="firearms license">Firearms license</option>
+            <option value="mortgage stmt">Mortgage statement</option>
+            <option value="bank stmt">
+              Bank or building society statement
+            </option>
+            <option value="bank account opening letter">
+              Bank or building society account opening letter
+            </option>
+            <option value="credit card stmt">Credit card statement</option>
+            <option value="financial stmt">
+              Financial statement (e.g. pension or endowment)
+            </option>
+            <option value="P45 or P60 stmt">P45 or P60 statement</option>
+            <option value="council tax stmt">Council tax statement</option>
+            <option value="letter of sponsorship">
+              Letter of sponsorship from future employment provider
+            </option>
+            <option value="utility bill">Utility bill</option>
+            <option value="benefit stmt ">
+              Benefit statement (e.g. Child Benefit or Pension)
+            </option>
+            <option value="govt agency doc">
+              Government agency document giving entitlement
+            </option>
+            <option value="EEA national ID card">EEA National ID card</option>
+            <option value="irish passport card">Irish Passport Card</option>
+            <option value="accreditation logo">
+              Cards carrying PASS accreditation logo
+            </option>
+            <option value="letter from authority">
+              Letter from head teacher or college principal
+            </option>
+            <option value="Non-UK bank society stmt">
+              Non-UK Bank of building society statement
+            </option>
+          </select>
+          <div id="uploadDoc1">
+            <p></p>
+            <label
+              for="uploaded"
+              id="uploadButton1"
+              class="btn fileUpload btn-default"
+            >
+              Upload
+              <input
+                type="file"
+                name="upload"
+                id="uploaded1"
+                onchange="onFileUpload1(this.value)"
+              />
+            </label>
+          </div>
+        </div>
       </section>
     </section>
 
