@@ -1,5 +1,4 @@
 function onLoad() {
-   
     var group1 = document.getElementById("selectOption");
     group1.classList.remove('hide');
     group1.classList.add('show');
