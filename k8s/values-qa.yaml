@@ -1,0 +1,39 @@
+# Default values for gui-dynamic-collection-demo
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+environment: qa
+replicaCount: 1
+
+application:
+  port:
+    port: 80
+    protocol: TCP
+  livenessProbe:
+    path: /
+    period: 20
+    delay: 120
+  readinessProbe:
+    path: /
+    period: 20
+    delay: 120
+
+image:
+  repository: 769400344718.dkr.ecr.us-west-2.amazonaws.com/gui-dynamic-collection-demo
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/success-codes: 200-404
+  type: NodePort
+  port: 80
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 768Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

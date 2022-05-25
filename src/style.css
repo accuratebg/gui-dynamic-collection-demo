@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    font-family: "Helvetica", Sans-Serif;
+}
+
+header {
+    color: #222326;
+    padding: 10px 50px;
+    margin-bottom: 25px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.container {
+    padding: 0px 50px;
+}
+
+.nationality {
+    font-size: 14px;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.chkBtn {
+    width: 25px;
+    height: 26px;
+}
+
+.selectDoc {
+    width: 550px;
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 14px;
+    color: #1e0000;
+    border: 1px solid #999;
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+#uploadDoc,
+#uploadDoc1 {
+    color: #0d4c47;
+    font-size: 15px;
+    display: none;
+    padding: 13px 4px;
+    margin-left: 19px;
+    margin-bottom: 14px;
+    width: fit-content;
+    height: inherit;
+    background-color: #e4e4e4;
+    align-items: center;
+    border-radius: 20px;
+
+}
+
+.fileUpload input[type=file] {
+    display: none;
+}
+
+.btn {
+    background-color: #f0c8c8;
+    color: #333;
+    border: 1px solid #2c2c2c;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 16px;
+}
