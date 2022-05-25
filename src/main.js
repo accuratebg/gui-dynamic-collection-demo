@@ -1,12 +1,12 @@
 function onLoad() {
-  var group1 = document.getElementById("selectOption");
-  group1.classList.remove("hide");
-  group1.classList.add("show");
+  var selectOpt1 = document.getElementById("selectOption");
+  selectOpt1.classList.remove("hide");
+  selectOpt1.classList.add("show");
 }
 function onLoad2() {
-  var group1 = document.getElementById("selectOption");
-  group1.classList.remove("show");
-  group1.classList.add("hide");
+  var selectOpt1 = document.getElementById("selectOption");
+  selectOpt1.classList.remove("show");
+  selectOpt1.classList.add("hide");
 }
 function uploadSelectedDocument(element, t) {
   var selectedText = t.options[t.selectedIndex].innerHTML;
