@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document Collection</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
@@ -27,18 +27,17 @@
           UK
         </label>
         <label for="NonUK">
-          <input type="radio" id="NonUK" name="selector" onclick="onLoad2();" />
+          <input
+            type="radio"
+            id="NonUK"
+            name="selector"
+            onclick="onRadioNonUK();"
+          />
           Non UK
         </label>
       </div>
 
-      <div>
-        <button id="onBtn" class="btnStyle hide" onclick="onLoad();">
-          submit
-        </button>
-      </div>
-
-      <section id="selectOption" class="hide">
+      <section id="dropDownSection" class="hide">
         <input
           type="checkbox"
           id="onCheck"
@@ -46,29 +45,13 @@
           disabled="disabled"
           name="check"
         />
+
         <select
+          id="dropdownOpt1"
           class="selectDoc"
+          name="GROUP1_DOCUMENT_SELECTION"
           onchange="uploadSelectedDocument('uploadDoc',this);"
-        >
-          <option value="select" selected>
-            Select proof of identity document from group-1
-          </option>
-          <option value="passport photo">
-            Photograph/MRZ page of passport[any country;not expired]
-          </option>
-          <option value="residency permit">
-            Biometric residency permit[UK;Current]
-          </option>
-          <option value="Driving License">
-            Driving License photoCard[Current; full of provisional; UK, Isle of
-            Man or channel Island]
-          </option>
-          <option value="birth certificate">
-            Birth Certificate[UK; issued within 12 months of birth]
-          </option>
-          <option value="adoption Certificate">Adoption Certificate[UK]</option>
-          <option value="NA">I don't have any of these documents</option>
-        </select>
+        ></select>
 
         <div id="uploadDoc">
           <p></p>
@@ -87,90 +70,20 @@
           </label>
         </div>
 
-        <div>
+        <div id="subDropDown" class="hide">
           <input
             type="checkbox"
             id="onCheck1"
-            class="chkBtn hide"
+            class="chkBtn"
             disabled="disabled"
             name="check"
           />
+
           <select
-            id="subSelect"
-            class="selectDoc hide"
+            id="dropdownOpt2"
+            class="selectDoc"
             onchange="uploadSelectedDoc('uploadDoc1',this);"
-          >
-            <option value="select" selected>
-              Select proof of identity document from group-1,2a or 2b
-            </option>
-            <option value="passport photo">
-              Photograph/MRZ page of passport[any country;not expired]
-            </option>
-            <option value="residency permit">
-              Biometric residency permit[UK;Current]
-            </option>
-            <option value="driving license">
-              Driving License photoCard[Current; full of provisional; UK, Isle
-              of Man or channel Island]
-            </option>
-            <option value="birth certificate">
-              Birth Certificate[UK; issued within 12 months of birth]
-            </option>
-            <option value="adoption certificate">
-              Adoption Certificate[UK]
-            </option>
-            <option value="current driving license">
-              Current Driving License photoCard(full or provisional)
-            </option>
-            <option value="current driving license paper ">
-              Current driving license paper version (full or provisional)
-            </option>
-            <option value="birth certificate">
-              Birth certificate – issued after time of birth
-            </option>
-            <option value="marriage certificate">
-              Marriage / civil partnership certificate
-            </option>
-            <option value="immigration doc">
-              Immigration document, visa or work permit
-            </option>
-            <option value="HM forces ID">HM Forces ID card</option>
-            <option value="firearms license">Firearms license</option>
-            <option value="mortgage stmt">Mortgage statement</option>
-            <option value="bank stmt">
-              Bank or building society statement
-            </option>
-            <option value="bank account opening letter">
-              Bank or building society account opening letter
-            </option>
-            <option value="credit card stmt">Credit card statement</option>
-            <option value="financial stmt">
-              Financial statement (e.g. pension or endowment)
-            </option>
-            <option value="P45 or P60 stmt">P45 or P60 statement</option>
-            <option value="council tax stmt">Council tax statement</option>
-            <option value="letter of sponsorship">
-              Letter of sponsorship from future employment provider
-            </option>
-            <option value="utility bill">Utility bill</option>
-            <option value="benefit stmt ">
-              Benefit statement (e.g. Child Benefit or Pension)
-            </option>
-            <option value="govt agency doc">
-              Government agency document giving entitlement
-            </option>
-            <option value="EEA national ID card">EEA National ID card</option>
-            <option value="irish passport card">Irish Passport Card</option>
-            <option value="accreditation logo">
-              Cards carrying PASS accreditation logo
-            </option>
-            <option value="letter from authority">
-              Letter from head teacher or college principal
-            </option>
-            <option value="Non-UK bank society stmt">
-              Non-UK Bank of building society statement
-            </option>
-          </select>
+          ></select>
           <div id="uploadDoc1">
             <p></p>
             <label
@@ -188,9 +101,15 @@
           </div>
         </div>
       </section>
+      <div id="submitBtn">
+        <button id="onBtn" class="btnStyle hide" onclick="onSubmit();">
+          submit
+        </button>
+      </div>
     </section>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="./document.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="document.js"></script>
   </body>
 </html>
