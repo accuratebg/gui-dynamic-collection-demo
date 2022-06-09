@@ -1,0 +1,70 @@
+{
+    "caseReference": "Y9204788",
+    "id": 10001,
+    "collectionStatus": "inprogress",
+    "instructionHeaderLocale": "United Kingdom - Federal Police Form",
+    "instructionTextLocale": "<article> Please complete the attached AFP release form (Sections 2 and 6 only) and provide a General International Release form. In addition, kindly provide the following: <ul> <li> Full and precise name on all forms (Physical or E-signature required on the AFP form) </li> <li>Complete address on AFP form</li> <li>100 points of legible, certified ID documentation</li> </ul></article>",
+    "step": 3,
+    "documentDetails": [
+        {
+            "country": "UK",
+            "documentStorageId": "5dd46e9a07885d000afesde8",
+            "packageId": "Y9204788",
+            "documentType": "OTHR",
+            "locationType": "SEARCH",
+            "searchType": "INTCRM",
+            "whoNeedsToInteract": "CANDIDATE",
+            "fieldType": "radio",
+            "required": true,
+            "field": "nationality",
+            "fileName":"documentName",
+            "saved": true,
+            "options": []
+        },
+        {
+            "country": "UK",
+            "documentStorageId": "5dd46e9a07885d000afesde8",
+            "packageId": "Y9204788",
+            "documentType": "OTHR",
+            "locationType": "SEARCH",
+            "searchType": "INTCRM",
+            "whoNeedsToInteract": "CANDIDATE",
+            "fieldType": "select",
+            "required": true,
+            "field": "doc1",
+            "fileName":"documentName",
+            "saved": true,
+            "options": [
+                "Photograph/MRZ page of passport [any country; not expired]",
+                "Biometric residency permit [UK; current]",
+                "Driving license photocard [Current; full or provisional; UK. Isle of Man, or Channel Islands",
+                "Birth certificate [UK; issued within 12 months of birth]",
+                "Adoption certificate [UK]",
+                "I don’t have any of these documents"
+            ]
+        },
+        {
+            "country": "UK",
+            "documentStorageId": "5dd46e9a07885d0400afe8c48",
+            "packageId": "Y9204788",
+            "documentType": "OTHR",
+            "locationType": "SEARCH",
+            "searchType": "INTCRM",
+            "whoNeedsToInteract": "CANDIDATE",
+            "fieldType": "select",
+            "required": true,
+            "field": "doc2",
+            "fileName":"documentName",
+            "saved": true,
+            "options": [
+                "Driving license photocard [all countries outside of UK excluding, Isle of Man, or Channel Islands; full or provisional; current]",
+                "Driving license paper version [UK, full or provisional, current]",
+                "Birth certificate – issued after time of birth",
+                "Marriage / civil partnership certificate",
+                "Immigration document, visa or work permit",
+                "HM Forces ID card",
+                "Firearms license"
+            ]
+        }
+    ]
+}

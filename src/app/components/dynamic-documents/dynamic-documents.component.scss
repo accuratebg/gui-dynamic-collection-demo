@@ -1,0 +1,35 @@
+.form-error {
+    color: red;
+
+    select {
+        border-color: red;
+    }
+}
+.fileUpload {
+    margin-top: 10px;
+    overflow: hidden;
+    span {
+        width: calc(100% - 165px);
+        display: block;
+        float: left;
+    }
+
+    input {
+        width: 165px;
+        float: right;
+    }
+}
+.form-group {
+    overflow: hidden;
+    .blck{
+        overflow: hidden;
+    }
+    select {
+        width: 90%;
+    }
+    .select-mark{
+        width: 10%;
+        display: block;
+        padding: 5px 0 0 5px;
+    }
+}

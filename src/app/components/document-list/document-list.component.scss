@@ -1,0 +1,41 @@
+.documentList{
+    list-style-type: none;
+
+    li{
+        border: 2px solid #a8a8a8;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: #f2f1f1;
+        font-size: 15px;
+        color: #7b90d3;
+        cursor: pointer;
+
+        .block {
+            display: block;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        &.not-allowed{
+            cursor: not-allowed;
+        }
+
+        .disable{
+            pointer-events: none;
+            
+            .collection-status{
+                background-color: #bbffaf;
+            }
+        }
+
+        .space {
+            margin: 0px 5px;
+        }
+
+        .collection-status{
+            background-color: #c5c5c5;
+            border-radius: 4px;
+            padding: 2px 10px;
+        }
+    }
+}

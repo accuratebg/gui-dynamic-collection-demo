@@ -1,0 +1,48 @@
+<div>
+    <div>
+        <form #nameForm="ngForm" novalidate [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+            <div *ngFor="let control of dynamicFieldData.documentDetails; let i=index">
+
+                <!-- Select Drop Down -->
+                <div class="form-group" *ngIf="control.fieldType == 'select'">
+                    <div class="blck">
+                        <select class="form-control float-left" (change)="selectOptions(saveDynamicDataObj[control.fileName+i], i)" 
+                        [(ngModel)]="saveDynamicDataObj[control.field]" required={{control.required}} [ngModelOptions]="{standalone: true}" 
+                        id={{control.field}} name={{control.field}} #{{control.field}}="ngModel" [disabled]="control.saved">
+                            <option [ngValue]="undefined" disabled>Select An Option</option>
+                            <option *ngFor="let item of control.options" [ngValue]="item">{{item}}</option>
+                        </select>
+                        <span class="select-mark float-left" *ngIf="control.saved"><img src="assets/images/checked.png" alt="" srcset=""></span>
+                    </div>
+                    <div class="fileUpload" *ngIf="!control.saved && selectedOption == i && saveDynamicDataObj[control.field] != 'I don’t have any of these documents'">
+                        <span>{{saveDynamicDataObj[control.field]}}</span>
+                        <input type="file" name="" id="" [(ngModel)]="saveDynamicDataObj[control.fileName + i]" observeFiles [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+
+                <!-- Radio Button Block -->
+                <div class="form-group" *ngIf="control.fieldType == 'radio'">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" [(ngModel)]="saveDynamicDataObj[control.field]" [ngModelOptions]="{standalone: true}" id="inlineRadio1" name={{control.field}} #{{control.field}}="ngModel" value="UK" [disabled]="control.saved">
+                        <label class="form-check-label" for="inlineRadio1">UK</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" [(ngModel)]="saveDynamicDataObj[control.field]" [ngModelOptions]="{standalone: true}" id="inlineRadio2" name={{control.field}} #{{control.field}}="ngModel" value="NonUK" [disabled]="control.saved">
+                        <label class="form-check-label" for="inlineRadio2">Non UK</label>
+                    </div>
+                </div>
+
+                <!-- Input type Block -->
+                <div class="form-group" *ngIf="control.fieldType == 'input'">
+                    <!-- <label for="exampleInputEmail1"></label> -->
+                    <input type="text" class="form-control" [(ngModel)]="saveDynamicDataObj[control.field]" 
+                    [ngModelOptions]="{standalone: true}" id={{control.field}} name={{control.field}} #{{control.field}}="ngModel"
+                     [disabled]="control.saved" placeholder={{control.placeholder}}>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" *ngIf="dynamicForm.valid && !redirectToNext">Submit</button>
+            <button type="button" class="btn btn-primary" *ngIf="redirectToNext" (click)="goToNext()">Next</button>
+          </form>
+    </div>
+</div>

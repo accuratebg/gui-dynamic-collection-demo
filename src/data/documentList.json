@@ -1,0 +1,25 @@
+{
+    "documentList": [
+        {
+            "description": "Personal Information",
+            "packageId": "Y9205327",
+            "id": 1005,
+            "required": true,
+            "collectionStatus": "collected"
+        },
+        {
+            "description": "UK Document Collection",
+            "packageId": "Y9205327",
+            "id": 1000,
+            "required": true,
+            "collectionStatus": "notyet"
+        },
+        {
+            "description": "Australia Document Collection",
+            "packageId": "Y9205327",
+            "id": 1001,
+            "required": true,
+            "collectionStatus": "inprogress"
+        }
+    ]
+}
