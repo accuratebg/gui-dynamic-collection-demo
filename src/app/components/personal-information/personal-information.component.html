@@ -1,0 +1,17 @@
+<div>
+    <div>
+
+          <form #saveDynamicData = "ngForm" (ngSubmit) = "onSubmit(saveDynamicDataObj)">
+            <div *ngFor="let control of dynamicFieldData; let i=index;">
+                <!-- Input type Block -->
+                <div class="form-group" *ngIf="control.fieldType == 'text'">
+                    <input type="text" class="form-control" [(ngModel)]="saveDynamicDataObj[control.field]" 
+                    [ngModelOptions]="{standalone: true}" id={{control.field}} name={{control.field}} #{{control.field}}="ngModel"
+                      placeholder={{control.placeholder}}>
+                     <!-- <span class="help-block" *ngIf="!saveDynamicDataObj[control.field].valid && saveDynamicDataObj[control.field].touched">Please fill valid data</span> -->
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!saveDynamicData.valid">Submit</button>
+            </form>
+    </div>
+</div>

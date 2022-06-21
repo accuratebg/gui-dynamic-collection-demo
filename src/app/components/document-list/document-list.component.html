@@ -8,9 +8,9 @@
                     <span class="taskName float-left">{{document.description}} </span>
                     <span class="space float-left">-</span>
                     <span class="collection-status float-left">
-                        <span *ngIf="document.collectionStatus == 'notyet'">Not yet collected</span>
+                        <span *ngIf="document.collectionStatus == 'pending'">Pending</span>
                         <span *ngIf="document.collectionStatus == 'inprogress'">InProgress</span>
-                        <span *ngIf="document.collectionStatus == 'collected'">Collected</span>
+                        <span *ngIf="document.collectionStatus == 'collected'">Completed</span>
                     </span>
                 </span>
             </li>

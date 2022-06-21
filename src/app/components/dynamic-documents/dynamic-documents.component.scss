@@ -33,3 +33,52 @@
         padding: 5px 0 0 5px;
     }
 }
+.form-check-inline {
+    .form-check-input{
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+}
+.btn-primary {
+    background-color: #122e53;
+    border-color: #122e53;
+}
+input[type="radio"] ~ * { 
+    padding: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+input[type="radio"]:checked ~ * { 
+    background:#122e53 !important;
+    color: #fff;
+    padding: 4px;
+}
+
+/* Ripple effect */
+.btn {
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .btn:hover {
+    background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+  }
+  .btn:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }
+  
+  /* Button style */
+  button {
+    border: none;
+    border-radius: 2px;
+    padding: 8px 10px;
+    font-size: 12px !important;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+    background-color: #2196f3;
+    box-shadow: 0 0 4px #999;
+    outline: none;
+  }

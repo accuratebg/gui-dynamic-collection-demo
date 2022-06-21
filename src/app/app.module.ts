@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { FileUploadModule } from 'ng2-file-upload';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { DynamicDocumentsComponent } from './components/dynamic-documents/dynamic-documents.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PersonalInformationComponent } from './components/personal-information/personal-information.component'; 
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { DynamicDocumentsComponent } from './components/dynamic-documents/dynami
     DocumentUploadComponent,
     PageNotFoundComponent,
     DocumentListComponent,
-    DynamicDocumentsComponent
+    DynamicDocumentsComponent,
+    PersonalInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,10 @@ import { DynamicDocumentsComponent } from './components/dynamic-documents/dynami
     FileUploadModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
+    CookieModule.withOptions()
   ],
   providers: [],
   bootstrap: [AppComponent]

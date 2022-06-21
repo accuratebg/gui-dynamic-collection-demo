@@ -1,0 +1,47 @@
+[
+    {
+        "country": "UK",
+        "documentStorageId": "62b05b0c67b9ca08366c6c9e",
+        "packageId": "Y9204788",
+        "documentType": "OTHR",
+        "locationType": "SEARCH",
+        "searchType": "INTCRM",
+        "whoNeedsToInteract": "CANDIDATE",
+        "fieldType": "text",
+        "required": true,
+        "field": "fathersForeName",
+        "fileName":"documentName",
+        "placeholder":"Father's Fore Name",
+        "saved": false
+    },
+    {
+        "country": "UK",
+        "documentStorageId": "62b05b0c67b9ca08366c6c9e",
+        "packageId": "Y9204788",
+        "documentType": "OTHR",
+        "locationType": "SEARCH",
+        "searchType": "INTCRM",
+        "whoNeedsToInteract": "CANDIDATE",
+        "fieldType": "text",
+        "required": true,
+        "field": "mothersMiddleName",
+        "fileName":"documentName",
+        "placeholder":"Mother's Middle Name",
+        "saved": false
+    },
+    {
+        "country": "UK",
+        "documentStorageId": "62b05b0c67b9ca08366c6c9e",
+        "packageId": "Y9204788",
+        "documentType": "OTHR",
+        "locationType": "SEARCH",
+        "searchType": "INTCRM",
+        "whoNeedsToInteract": "CANDIDATE",
+        "fieldType": "text",
+        "required": true,
+        "field": "mothersLastName",
+        "fileName":"documentName",
+        "placeholder":"Mother's Last Name",
+        "saved": false
+    }
+]

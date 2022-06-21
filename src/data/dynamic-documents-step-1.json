@@ -4,7 +4,7 @@
     "collectionStatus": "inprogress",
     "instructionHeaderLocale": "United Kingdom - Federal Police Form",
     "instructionTextLocale": "<article> Please complete the attached AFP release form (Sections 2 and 6 only) and provide a General International Release form. In addition, kindly provide the following: <ul> <li> Full and precise name on all forms (Physical or E-signature required on the AFP form) </li> <li>Complete address on AFP form</li> <li>100 points of legible, certified ID documentation</li> </ul></article>",
-    "step": 1,
+    "sequence": 1,
     "documentDetails": [
         {
             "country": "UK",

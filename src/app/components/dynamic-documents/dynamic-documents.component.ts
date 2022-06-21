@@ -1,7 +1,9 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { CookieService } from 'ngx-cookie';
 
 interface JsonFormValidators {
   min?: number;
@@ -32,6 +34,7 @@ interface dynamicFormControls {
   validators: JsonFormValidators;
 }
 
+
 export interface dynamicFormData {
   controls: dynamicFormControls[];
 }
@@ -44,17 +47,22 @@ export interface dynamicFormData {
 })
 
 export class DynamicDocumentsComponent implements OnChanges, OnInit {
+  @ViewChild('fileInput') fileInput: any;
   @Input() dynamicFormData?: dynamicFormData;
   dynamicFieldData:any;
-  selectedOption:any;
+  selectedOption:any = false;
   showUploadBtn: boolean = false;
   hideme:any = {};
   saveDynamicDataObj:any = {};
   redirectToNext = false;
+  completedDocument:any;
+  showSubmitBtn: boolean = false;
+  selectedLabelName:any;
+  selectedOptionValue:any = {};
 
   public dynamicForm: FormGroup = this.fb.group({});
 
-  constructor(private fb: FormBuilder, private router: Router, public http: HttpClient, private changeDetection: ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder, private router: Router, public http: HttpClient, private changeDetection: ChangeDetectorRef, private spinner: NgxSpinnerService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     console.log(this.dynamicFormData);
@@ -118,38 +126,93 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
       );
     }
   }
-
-  onSubmit() {
+  
+  onSubmit(control:any) {
+    this.spinner.show();
     console.log('Form valid: ', this.dynamicForm.valid);
     console.log(this.saveDynamicDataObj);
+    let url = "https://biz-search-requirements.dev.ablocal.io/v1/document-session/" + this.dynamicFieldData.id + "/step/save";
+    //let dummyUrl = 'data/sequence-1.json';
+    if(control.sequence == 1){
+        let obj = {
+          step: "CHOOSE_NATIONALITY",
+          sequence: "1",
+          values: [this.saveDynamicDataObj.nationality]
+        };
+        let strObj = JSON.stringify(obj);
+        var formData: any = new FormData();
+        formData.append("documentSessionStepRequest", strObj);
+        console.log();
+        this.http.post(url, formData).subscribe((response:any) => {
+        //this.http.get('data/sequence-1.json').subscribe((response:any) => {
+          console.log(response);
+          this.showSubmitBtn = false;
+          this.refreshDocumentUploadSTeps();
+          //this.dynamicFieldData = response.nextStep;
+         // this.completedDocument = response.currentStep;
+          this.changeDetection.detectChanges();
+        }, function(error){
+          console.log(error);
+        });
 
-    if(this.dynamicFieldData.step == 1){
-      this.http.get('data/dynamic-documents-step-2.json').subscribe((res) => {
-        this.dynamicFieldData = res;
-        this.changeDetection.detectChanges();
-        // console.log(this.dynamicFieldData);
+    } else if(control.sequence == 2 || control.sequence == 3){
+      let obj = {
+        step: "GROUP1_DOCUMENT_SELECTION",
+        sequence: "2",
+        values: [this.saveDynamicDataObj.values],
+        productSKUs: ["A","B","C"],
+        metadata: { documentType: "OTHR" }
+      };
+      let strObj = JSON.stringify(obj);
+
+      const fileBrowser = this.fileInput.nativeElement;
+      var formData: any = new FormData();
+      //formData.append("file", this.saveDynamicDataObj.documentName);
+      formData.append("file", fileBrowser.files[0]);
+      formData.append("documentSessionStepRequest", strObj);
+
+      /*const httpOptions = {
+          headers: new HttpHeaders({
+          'Content-Type':  'multipart/form-data'
+        })
+      };*/
+
+      this.http.post(url, formData).subscribe((response: any) => {
+        console.log(response);
+          //this.dynamicFieldData = response.nextStep;
+          //this.completedDocument = response.currentStep;
+          this.refreshDocumentUploadSTeps();
+          this.changeDetection.detectChanges();
+      }, function(error){
+          console.log(error);
       });
-    } else if(this.dynamicFieldData.step == 2){
-      this.http.get('data/dynamic-documents-step-3.json').subscribe((res) => {
-        this.dynamicFieldData = res;
-        this.changeDetection.detectChanges();
-        // console.log(this.dynamicFieldData);
-      });
-    } else if(this.dynamicFieldData.step == 3){
-      this.http.get('data/dynamic-documents-step-4.json').subscribe((res) => {
-        this.dynamicFieldData = res;
-        this.changeDetection.detectChanges();
-        // console.log(this.dynamicFieldData);
-        this.redirectToNext = true;
-      });
+      
     }
   }
 
-  selectOptions(fileType: any, index: number){
-    this.selectedOption = index;
+  refreshDocumentUploadSTeps() {
+    this.http.get('https://biz-search-requirements.dev.ablocal.io/v1/document-session/' + this.dynamicFieldData.id).subscribe((res) => {
+      this.selectedOption = false;
+      this.showSubmitBtn = false;
+      this.dynamicFieldData = res;
+      console.log(this.dynamicFieldData);
+      this.spinner.hide();
+      this.changeDetection.detectChanges();
+    });
+  }
+
+  displaySaveBtn(){
+    this.showSubmitBtn = true;
+  }
+
+  selectOptions(obj: any){
+    this.selectedOption = true;
+    this.saveDynamicDataObj.values = obj.value;
+    this.selectedLabelName = obj.displayLabel;
+    this.showSubmitBtn = true;
     console.log('value is ' + this.selectedOption);
     console.log(this.saveDynamicDataObj);
-    if(fileType){
+    if(obj){
       delete this.saveDynamicDataObj.documentName;
     }
     this.showUploadBtn = true;
@@ -162,6 +225,7 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   }
 
   goToNext(){
+    this.cookieService.put('redirectedFrom', 'documentPage');
     this.router.navigateByUrl('/document-list');
   }
 

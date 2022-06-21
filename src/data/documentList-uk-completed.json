@@ -5,7 +5,7 @@
             "packageId": "Y9205327",
             "id": "62b05b0c67b9ca08366c6c9e",
             "required": true,
-            "collectionStatus": "pending",
+            "collectionStatus": "collected",
             "type": "data"
         },
         {
@@ -13,7 +13,7 @@
             "packageId": "Y9205327",
             "id": "62b1abcf20cde253f1b76c5d",
             "required": true,
-            "collectionStatus": "pending",
+            "collectionStatus": "collected",
             "type": "document"
         },
         {
