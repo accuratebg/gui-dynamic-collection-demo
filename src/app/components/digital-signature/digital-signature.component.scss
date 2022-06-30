@@ -1,0 +1,19 @@
+.signature-container {
+    border-style: dashed;
+    border-width: 1px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.buttons {
+    float: right;
+    min-height: 43px;
+    button {
+        margin-right: 10px;
+        padding: 10px 15px;
+        color: white;
+        border-radius: 5px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 14px;
+    }
+}

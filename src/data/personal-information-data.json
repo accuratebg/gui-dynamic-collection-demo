@@ -1,47 +1,63 @@
-[
-    {
-        "country": "UK",
-        "documentStorageId": "62b05b0c67b9ca08366c6c9e",
-        "packageId": "Y9204788",
-        "documentType": "OTHR",
-        "locationType": "SEARCH",
-        "searchType": "INTCRM",
-        "whoNeedsToInteract": "CANDIDATE",
-        "fieldType": "text",
-        "required": true,
-        "field": "fathersForeName",
-        "fileName":"documentName",
-        "placeholder":"Father's Fore Name",
-        "saved": false
-    },
-    {
-        "country": "UK",
-        "documentStorageId": "62b05b0c67b9ca08366c6c9e",
-        "packageId": "Y9204788",
-        "documentType": "OTHR",
-        "locationType": "SEARCH",
-        "searchType": "INTCRM",
-        "whoNeedsToInteract": "CANDIDATE",
-        "fieldType": "text",
-        "required": true,
-        "field": "mothersMiddleName",
-        "fileName":"documentName",
-        "placeholder":"Mother's Middle Name",
-        "saved": false
-    },
-    {
-        "country": "UK",
-        "documentStorageId": "62b05b0c67b9ca08366c6c9e",
-        "packageId": "Y9204788",
-        "documentType": "OTHR",
-        "locationType": "SEARCH",
-        "searchType": "INTCRM",
-        "whoNeedsToInteract": "CANDIDATE",
-        "fieldType": "text",
-        "required": true,
-        "field": "mothersLastName",
-        "fileName":"documentName",
-        "placeholder":"Mother's Last Name",
-        "saved": false
-    }
-]
+{
+    "fields":[
+       {
+          "displayLabel":"FATHERS_MIDDLE_NAME ",
+          "field":"FATHERS_MIDDLE_NAME ",
+          "productSKUs":[
+             "TEST_SKU"
+          ],
+          "instructionText":"FATHERS_MIDDLE_NAME ",
+          "instructionHeader":"FATHERS_MIDDLE_NAME ",
+          "dropdownPlaceHolder":"FATHERS_MIDDLE_NAME ",
+          "locations":[
+             {
+                "country":"IND",
+                "locationType":"KA",
+                "region":"TU",
+                "region2":"BE"
+             }
+          ],
+          "required":true,
+          "type":"TEXT",
+          "validation":{
+             "label":"string",
+             "regex":null
+          },
+          "valueOptions":[
+             
+          ],
+          "collectedValue":null
+       },
+       {
+          "displayLabel":"MOTHERS_MAIDEN_NAME ",
+          "field":"MOTHERS_MAIDEN_NAME ",
+          "productSKUs":[
+             "TEST_SKU"
+          ],
+          "instructionText":"MOTHERS_MAIDEN_NAME ",
+          "instructionHeader":"MOTHERS_MAIDEN_NAME ",
+          "dropdownPlaceHolder":"MOTHERS_MAIDEN_NAME ",
+          "locations":[
+             {
+                "country":"IND",
+                "locationType":"KA",
+                "region":"TU",
+                "region2":"BE"
+             }
+          ],
+          "required":true,
+          "type":"TEXT",
+          "validation":{
+             "label":"string",
+             "regex":null
+          },
+          "valueOptions":[
+             
+          ],
+          "collectedValue":null
+       }
+    ],
+    "documentUploads":[
+       
+    ]
+ }

@@ -16,7 +16,10 @@ import { DocumentListComponent } from './components/document-list/document-list.
 import { DynamicDocumentsComponent } from './components/dynamic-documents/dynamic-documents.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PersonalInformationComponent } from './components/personal-information/personal-information.component'; 
+import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
+import { DigitalSignatureComponent } from './components/digital-signature/digital-signature.component'; 
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { MustMatchDirective } from './directives/must-match.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { PersonalInformationComponent } from './components/personal-information/
     PageNotFoundComponent,
     DocumentListComponent,
     DynamicDocumentsComponent,
-    PersonalInformationComponent
+    PersonalInformationComponent,
+    DigitalSignatureComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { PersonalInformationComponent } from './components/personal-information/
     FormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    CookieModule.withOptions()
+    CookieModule.withOptions(),
+    SignaturePadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

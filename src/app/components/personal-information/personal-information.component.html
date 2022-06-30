@@ -1,17 +1,26 @@
 <div>
     <div>
 
-          <form #saveDynamicData = "ngForm" (ngSubmit) = "onSubmit(saveDynamicDataObj)">
+          <form #personalInformationForm = "ngForm">
             <div *ngFor="let control of dynamicFieldData; let i=index;">
                 <!-- Input type Block -->
-                <div class="form-group" *ngIf="control.fieldType == 'text'">
+                <div class="form-group" *ngIf="control.type == 'TEXT'">
+                    <label for="">{{control.displayLabel}}</label>
                     <input type="text" class="form-control" [(ngModel)]="saveDynamicDataObj[control.field]" 
                     [ngModelOptions]="{standalone: true}" id={{control.field}} name={{control.field}} #{{control.field}}="ngModel"
-                      placeholder={{control.placeholder}}>
+                      placeholder={{control.placeholder}} [required]="control.required">
                      <!-- <span class="help-block" *ngIf="!saveDynamicDataObj[control.field].valid && saveDynamicDataObj[control.field].touched">Please fill valid data</span> -->
                 </div>
+
+                <!-- Input type Block -->
+                <!-- <div class="form-group" *ngIf="control.fieldType == 'input'">
+                    <input type="text" class="form-control" [(ngModel)]="saveDynamicDataObj[control.field]" 
+                    [ngModelOptions]="{standalone: true}" id={{control.field}} name={{control.field}} #{{control.field}}="ngModel"
+                     [disabled]="control.saved" placeholder={{control.placeholder}}>
+                </div> -->
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!saveDynamicData.valid">Submit</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit(saveDynamicData)" [disabled]="!personalInformationForm.form.valid">Submit</button>
+            <!-- <button type="submit" class="btn btn-primary" [disabled]="!saveDynamicData.valid">Submit</button> -->
             </form>
     </div>
 </div>

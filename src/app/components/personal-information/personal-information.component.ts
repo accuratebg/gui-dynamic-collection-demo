@@ -14,6 +14,7 @@ export class PersonalInformationComponent implements OnInit {
   dynamicFieldData: any = [];
   saveDynamicDataObj: any = [];
   saveDynamicData: any;
+  //personalInformationForm: any;
 
   constructor(private router: Router, public http: HttpClient, private spinner: NgxSpinnerService, private cookieService: CookieService) { }
 
@@ -23,19 +24,101 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   onSubmit(data:any) {
-    this.saveDynamicDataObj;
-    console.log(data);
-    this.cookieService.put('redirectedFrom', 'pii');
-    this.router.navigateByUrl('/document-list');
+    this.spinner.show();
+    //this.saveDynamicDataObj;
+    //console.log(data);
+    //this.personalInformationForm;
+    let dataPoints = [];
+    for (const [key, value] of Object.entries(this.saveDynamicDataObj)) {
+      console.log(key, value);
+      let pushValues = {
+        field: key,
+        value: value,
+        productSKUs: [
+          "string"
+        ]
+      };
+      dataPoints.push(pushValues);
+    }
+
+    let obj = {
+      referenceId: "abcdefgh",
+      platform: "ACCEL",
+      dataPoints: dataPoints,
+      application: "string"
+    };
+    //let strObj = JSON.stringify(obj);
+    //var formData: any = new FormData();
+    //formData.append("documentSessionStepRequest", strObj);
+    //return;
+    
+    let url = "https://biz-search-requirements.dev.ablocal.io/v1/data";
+    this.http.post(url, obj).subscribe((response:any) => {      
+        console.log(response);
+        this.cookieService.put('redirectedFrom', 'pii');
+        this.router.navigateByUrl('/document-list');
+        //this.changeDetection.detectChanges();
+        this.spinner.hide();
+      }, function(error){
+        console.log(error);
+        this.spinner.hide();
+      });
   }
 
   getDynamicData() {
-    this.http.get('data/personal-information-data.json').subscribe((res) => {
-      console.log(this.dynamicFieldData);
+    let obj = {
+      "companyCodes": [
+        "TEST12121212"
+      ],
+      "dataType": "FIELD",
+      "locale": "string",
+      "locations": [
+        {
+          "country": "B",
+          "locationType": "A",
+          "region": "A",
+          "region2": "A"
+        }
+      ],
+      "platform": "string",
+      "products": [
+        "string"
+      ],
+      "referenceId": "string",
+      "whoNeedsToInteract": "CANDIDATE"
+    };
+
+    let obj1 = {
+      "referenceId":"abcdefgh",
+      "companyCodes":[
+         "TEST_COMPANY"
+      ],
+      "products":[
+         "TEST_SKU"
+      ],
+      "platform":"ACCEL",
+      "whoNeedsToInteract":"CANDIDATE",
+      "locations":[
+         {
+            "country":"IND",
+            "region":"TU",
+            "region2":"BE",
+            "locationType":"KA"
+         }
+      ]
+   };
+   
+    //this.http.get('data/personal-information-data.json').subscribe((response:any) => {
+    this.http.post('https://biz-search-requirements.dev.ablocal.io/v1/requirements', obj1).subscribe((response:any) => {
+      
       setTimeout(() => {
-        this.dynamicFieldData = res;
+        this.dynamicFieldData = response.fields;
+        console.log(this.dynamicFieldData);
         this.spinner.hide();
-      }, 1000);
+      }, 500);
+    }, function(error){
+      console.log(error);
+      this.spinner.hide();
     });
   }
 

@@ -59,6 +59,8 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   showSubmitBtn: boolean = false;
   selectedLabelName:any;
   selectedOptionValue:any = {};
+  signatureImage:any;
+  selectStaticToken:any = false;
 
   public dynamicForm: FormGroup = this.fb.group({});
 
@@ -67,6 +69,9 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     console.log(this.dynamicFormData);
     this.dynamicFieldData = this.dynamicFormData;
+    // if(this.dynamicFieldData.category == "PROOF_OF_ID"){
+    //   this.showSubmitBtn = true;
+    // }
   }
   ngOnChanges(changes: SimpleChanges) {
     // if (!changes.dynamicFormData.firstChange) {
@@ -133,12 +138,47 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
     console.log(this.saveDynamicDataObj);
     let url = "https://biz-search-requirements.dev.ablocal.io/v1/document-session/" + this.dynamicFieldData.id + "/step/save";
     //let dummyUrl = 'data/sequence-1.json';
+    
     if(control.sequence == 1){
-        let obj = {
+      let obj = {};
+      if(control.step == "STATIC_TOKEN_COLLECTION_STEP"){
+        obj = {
+          step: "STATIC_TOKEN_COLLECTION_STEP",
+          sequence: "1",
+          tokens:[{
+            token: "Current Family Name",
+              value: "SHIVA"
+            },
+            {
+              token: "All Given Names",
+              value: "RAM"
+            },
+            {
+              token: "Place of Birth Town",
+              value: "TUMKUR"
+            },
+            {
+              token: "Country",
+              value: "INDIA"
+            },
+            {
+              token: "State",
+              value: "KARNATAKA"
+            },
+            {
+              token: "Post Code",
+              value: "572 103"
+            }
+          ]
+        };
+
+      } else {
+        obj = {
           step: "CHOOSE_NATIONALITY",
           sequence: "1",
           values: [this.saveDynamicDataObj.nationality]
         };
+      }
         let strObj = JSON.stringify(obj);
         var formData: any = new FormData();
         formData.append("documentSessionStepRequest", strObj);
@@ -155,20 +195,36 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
           console.log(error);
         });
 
-    } else if(control.sequence == 2 || control.sequence == 3){
-      let obj = {
-        step: "GROUP1_DOCUMENT_SELECTION",
-        sequence: "2",
-        values: [this.saveDynamicDataObj.values],
-        productSKUs: ["A","B","C"],
-        metadata: { documentType: "OTHR" }
-      };
-      let strObj = JSON.stringify(obj);
+    } else if(control.sequence == 2 || control.sequence == 3) {
+      let obj = {};
+      if(control.step == "SIGNATURE_COLLECTION_STEP"){
+        obj = {
+          step: "SIGNATURE_COLLECTION_STEP",
+          sequence: "2",
+          values:["1"],
+          metadata:{"documentType":"OTHR"}
+        };
+      } else {
+        obj = {
+          step: "GROUP1_DOCUMENT_SELECTION",
+          sequence: "2",
+          values: [this.saveDynamicDataObj.values],
+          productSKUs: ["A","B","C"],
+          metadata: { documentType: "OTHR" }
+        };
+      }
 
-      const fileBrowser = this.fileInput.nativeElement;
+      let strObj = JSON.stringify(obj);
       var formData: any = new FormData();
       //formData.append("file", this.saveDynamicDataObj.documentName);
-      formData.append("file", fileBrowser.files[0]);
+      //formData.append("file", fileBrowser.files[0]);
+      if(control.step == "SIGNATURE_COLLECTION_STEP"){
+        formData.append("file", this.signatureImage);
+      } else {
+        const fileBrowser = this.fileInput.nativeElement;
+        formData.append("file", fileBrowser.files[0]);
+      }
+      
       formData.append("documentSessionStepRequest", strObj);
 
       /*const httpOptions = {
@@ -185,6 +241,7 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
           this.changeDetection.detectChanges();
       }, function(error){
           console.log(error);
+          this.spinner.hide();
       });
       
     }
@@ -227,6 +284,25 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   goToNext(){
     this.cookieService.put('redirectedFrom', 'documentPage');
     this.router.navigateByUrl('/document-list');
+  }
+
+  ParentComponent(data:any) {
+    console.log(data); // this data of child will show in parent console window 
+    this.signatureImage = data;
+    if(this.signatureImage) {
+      this.showSubmitBtn = true;
+    } else {
+      this.showSubmitBtn = false;
+    }
+  }
+
+  selectStaticTokenFn(event:any){
+    this.selectStaticToken = !this.selectStaticToken;
+    if(this.selectStaticToken) {
+      this.showSubmitBtn = true;
+    } else {
+      this.showSubmitBtn = false;
+    }
   }
 
 }

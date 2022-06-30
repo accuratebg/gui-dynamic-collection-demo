@@ -31,6 +31,8 @@ export class DocumentUploadComponent implements OnInit {
       this.documents = res;
       console.log(this.documents);
       this.spinner.hide();
+    }, function(error){
+          console.log(error);
     });
   }
 
