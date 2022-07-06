@@ -1,0 +1,8 @@
+<section>
+    <!-- <h1 class="text-center" [textContent]="documents.instructionHeaderLocale"></h1> -->
+    <!-- <p [innerHtml]="documents.instructionTextLocale"></p> -->
+
+    <div class="dynamic-document-section" *ngIf="documents">
+        <app-dynamic-documents [dynamicFormData]="documents"></app-dynamic-documents>
+    </div>
+</section>

@@ -1,0 +1,106 @@
+<div>
+    <div>
+        <form #nameForm="ngForm" novalidate [formGroup]="dynamicForm">
+            <div *ngFor="let control of dynamicFieldData.steps; let i=index;">
+                <!-- Completed Steps Block -->
+                <div class="completedStepsBlock">
+                    <!-- Radio Button Block -->
+                    <div class="form-group" *ngIf="control.inputType == 'RADIO_BUTTON' && control.status == 'COMPLETED'">
+                        <div class="form-check form-check-inline" *ngFor="let radioItem of control.options">
+                            <input class="form-check-input" type="radio" [(ngModel)]="control.collectedValues[0]" 
+                            [ngModelOptions]="{standalone: true}" id="inlineRadio1" name={{radioItem.value}} #{{radioItem.value}}="ngModel" 
+                            value={{radioItem.value}} [checked]="radioItem.value == control.collectedValues[0]" [disabled]="control.status == 'COMPLETED'">
+                            <label class="form-check-label" for="inlineRadio{{radioItem.value}}">{{radioItem.displayLabel}}</label>
+                        </div>
+                    </div>
+                    <!-- Select Drop Down -->
+                    <div class="form-group" *ngIf="control.inputType == 'DROPDOWN' && control.status == 'COMPLETED'">
+                        <div class="blck">
+                            <select class="form-control float-left"
+                            [(ngModel)]="control.collectedValues[0]" required={{control.required}} [ngModelOptions]="{standalone: true}" 
+                            id={{control.field}} name={{control.field}} #{{control.field}}="ngModel" [disabled]="control.status == 'COMPLETED'">
+                                <option [ngValue]="undefined" disabled>{{control.dropdownPlaceHolder}}</option>
+                                <option *ngFor="let item of control.options" [ngValue]="item.value">{{item.displayLabel}}</option>
+                            </select>
+                            <span class="select-mark float-left" *ngIf="control.status == 'COMPLETED'"><img src="assets/images/checked.png" alt="" srcset=""></span>
+                        </div>
+                    </div>
+
+                     <!-- Prefill PDF document -->
+                     <div *ngIf="dynamicFieldData.category == 'PROOF_OF_ID'">
+                        <div  class="form-group tokens" *ngIf="control.step == 'STATIC_TOKEN_COLLECTION_STEP' && control.status == 'COMPLETED'">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="true" id="staticToken"
+                                [disabled]="control.status == 'COMPLETED'" [checked]="control.status == 'COMPLETED'">
+                                <label class="form-check-label" for="staticToken">
+                                   Save static tocken step to sign the digital document
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group eSignatureBlock" *ngIf="control.step == 'SIGNATURE_COLLECTION_STEP'  && control.status == 'COMPLETED'">
+                            SIGNATURE COLLECTION STEP - {{control.status}}
+                        </div>
+                    </div>
+                </div>
+                <!-- End Completed Steps Block -->
+
+                <!-- Pending Steps Block -->
+                <div class="pendingStepsBlock">
+                    <!-- Radio Button Block -->
+                    <div class="form-group" *ngIf="control.inputType == 'RADIO_BUTTON' && control.status == 'PENDING'">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="saveDynamicDataObj.nationality" 
+                            [ngModelOptions]="{standalone: true}" id="inlineRadio1" name="radio" #{{radio}}="ngModel" 
+                            value="UK" [disabled]="completedDocument?.status == 'COMPLETED'" (change)="displaySaveBtn()">
+                            <label class="form-check-label" for="inlineRadio1">UK</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="saveDynamicDataObj.nationality" 
+                            [ngModelOptions]="{standalone: true}" id="inlineRadio2" name="radio" #{{radio}}="ngModel" 
+                            value="NonUK" [disabled]="completedDocument?.status == 'COMPLETED'" (change)="displaySaveBtn()">
+                            <label class="form-check-label" for="inlineRadio2">Non UK</label>
+                        </div>
+                    </div>
+                    <!-- Select Drop Down -->
+                    <div class="form-group" *ngIf="control.inputType == 'DROPDOWN' && control.status == 'PENDING'">
+                        <div class="blck">
+                            <select class="form-control float-left" (change)="selectOptions(selectedOptionValue.values)" 
+                            [(ngModel)]="selectedOptionValue.values" required={{dynamicFieldData.required}} [ngModelOptions]="{standalone: true}" 
+                            id={{dynamicFieldData.field}} name={{dynamicFieldData.field}} #{{dynamicFieldData.field}}="ngModel" [disabled]="dynamicFieldData.saved">
+                                <option [ngValue]="undefined" disabled>{{control.dropdownPlaceHolder}}</option>
+                                <option *ngFor="let item of control.options" [ngValue]="item">{{item.displayLabel}}</option>
+                            </select>
+                            <span class="select-mark float-left" *ngIf="dynamicFieldData.status == 'COMPLETED'"><img src="assets/images/checked.png" alt="" srcset=""></span>
+                        </div>
+                        <div class="fileUpload" *ngIf="selectedOption">
+                            <span>{{selectedLabelName}}</span>
+                            <input type="file" name="" #fileInput [(ngModel)]="saveDynamicDataObj.documentName" observeFiles [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    
+                    <!-- Prefill PDF document -->
+                    <div *ngIf="dynamicFieldData.category == 'PROOF_OF_ID'">
+                        <div  class="form-group tokens" *ngIf="control.step == 'STATIC_TOKEN_COLLECTION_STEP' && control.status == 'PENDING'">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="false" id="staticToken" [checked]="selectStaticToken" (change)="selectStaticTokenFn($event)">
+                                <label class="form-check-label" for="staticToken">
+                                   Save static tocken step to sign the digital document
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group eSignatureBlock" *ngIf="control.step == 'SIGNATURE_COLLECTION_STEP' && control.status == 'PENDING'">
+                            <app-digital-signature (ParentComponet)="ParentComponent($event)"></app-digital-signature>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" (click)="onSubmit(control)" *ngIf="dynamicForm.valid && control.status == 'PENDING' && !redirectToNext && showSubmitBtn">Submit</button>
+                </div>
+                <!-- End Pending Steps Block -->
+            </div>
+
+            <!-- <app-digital-signature (ParentComponet)="ParentComponent($event)"></app-digital-signature> -->
+            
+            <button type="button" class="btn btn-primary" *ngIf="redirectToNext || dynamicFieldData.status == 'COMPLETED'" (click)="goToNext()">Next</button>
+          </form>
+    </div>
+</div>

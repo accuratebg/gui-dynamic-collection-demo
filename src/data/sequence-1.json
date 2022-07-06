@@ -1,0 +1,106 @@
+
+{
+    "nextStep": {
+      "sequence": 2,
+      "step": "GROUP1_DOCUMENT_SELECTION",
+      "inputType": "DROPDOWN",
+      "documentCollectionType": null,
+      "displayLabel": "Group 1(US)",
+      "instructionText": "Select one document from group 1 scan and upload(US)",
+      "instructionHeader": "Group 1 Document Collection Instruction(US)",
+      "dropdownPlaceHolder": "Select proof of identity document from group 1(US)",
+      "downloadDocumentId": null,
+      "prefillDocument": null,
+      "options": [
+        {
+          "value": "1",
+          "documentGroup": "GROUP_1",
+          "documentType": "PASSPORT",
+          "country": "UK",
+          "region": "Wales",
+          "region2": "Cardiff",
+          "subDocuments": null,
+          "displayLabel": "Photograph/MRZ page of passport (any country not expired)(US)",
+          "point": 0
+        },
+        {
+          "value": "2",
+          "documentGroup": "GROUP_1",
+          "documentType": "PASSPORT",
+          "country": "US",
+          "region": "NY",
+          "region2": "NY1",
+          "subDocuments": null,
+          "displayLabel": "Photograph/MRZ page of passport (any country not expired)(US)",
+          "point": 0
+        },
+        {
+          "value": "3",
+          "documentGroup": "GROUP_1",
+          "documentType": "DRIVING_LICENSE",
+          "country": "UK",
+          "region": "Wales",
+          "region2": "Cardiff",
+          "subDocuments": null,
+          "displayLabel": "Driving License photocard(US)",
+          "point": 0
+        },
+        {
+          "value": "4",
+          "documentGroup": "GROUP_1",
+          "documentType": "DRIVING_LICENSE",
+          "country": "US",
+          "region": "NY",
+          "region2": "NY1",
+          "subDocuments": null,
+          "displayLabel": "Driving License photocard(US)",
+          "point": 0
+        },
+        {
+          "value": "5",
+          "documentGroup": "GROUP_1",
+          "documentType": "ADOPTION_CERTIFICATE",
+          "country": "UK",
+          "region": "Wales",
+          "region2": "Cardiff",
+          "subDocuments": null,
+          "displayLabel": "Adoption Certificate(US)",
+          "point": 0
+        },
+        {
+          "value": "6",
+          "documentGroup": "GROUP_1",
+          "documentType": "BIOMETRIC_RECEDENCY_PERMIT",
+          "country": "UK",
+          "region": "Wales",
+          "region2": "Cardiff",
+          "subDocuments": null,
+          "displayLabel": "Biometric Recedency Permit(US)",
+          "point": 0
+        },
+        {
+          "value": "7",
+          "documentGroup": "GROUP_1",
+          "documentType": "BIRTH_CERTIFICATE",
+          "country": "UK",
+          "region": "Wales",
+          "region2": "Cardiff",
+          "subDocuments": null,
+          "displayLabel": "BirthCertificate(US)",
+          "point": 0
+        }
+      ],
+      "status": "PENDING",
+      "created": "2022-06-17T07:31:37.307+00:00",
+      "updated": "2022-06-17T07:31:37.307+00:00",
+      "collectedValues": null,
+      "collectedDocument": null
+    },
+    "currentStep": {
+      "step": "CHOOSE_NATIONALITY",
+      "sequence": "1",
+      "status": "COMPLETED",
+      "created": "2022-06-17T06:35:07.490+00:00",
+      "updated": "2022-06-17T07:31:37.307+00:00"
+    }
+  }

@@ -1,0 +1,54 @@
+<div>
+    <div>
+        <form #personalInformationForm = "ngForm">
+            <div *ngFor="let control of dynamicFieldData; let i=index;">
+                <!-- Input type Block -->
+                <div class="form-group" *ngIf="control.type == 'TEXT'">
+                    <label for="">{{control.displayLabel}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="saveDynamicDataObj[control.field]" 
+                    [ngModelOptions]="{standalone: true}" id={{control.field}} name={{control.field}} #{{control.field}}="ngModel"
+                      placeholder={{control.placeholder}} [required]="control.required">
+                     <!-- <span class="help-block" *ngIf="!saveDynamicDataObj[control.field].valid && saveDynamicDataObj[control.field].touched">Please fill valid data</span> -->
+                </div>
+               
+                <div class="form-group" *ngIf="control.type == 'RADIO_BUTTON'">
+                    <div  *ngFor="let item of control.valueOptions;let i = index;"  class="form-group form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={{item.value}} />
+                        <label class="form-check-label" for="inlineRadio1">{{item.displayLabel}}</label>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="control.type == 'DROPDOWN'">
+                   <div class="block">
+                        <select class="form-control float-left"
+                        [(ngModel)]="saveDynamicDataObj[control.field]" required={{control.required}} [ngModelOptions]="{standalone: true}" 
+                        id={{control.field}} name={{control.field}} #{{control.field}}="ngModel" >
+                            <option [ngValue]="undefined" disabled>{{control.dropdownPlaceHolder}}</option>
+                            <option *ngFor="let item of control.valueOptions" [ngValue]="item.value">{{item.displayLabel}}</option>
+                        </select>
+                        <span class="select-mark float-left" *ngIf="control.status == 'COMPLETED'"><img src="assets/images/checked.png" alt="" srcset=""></span>
+                    </div>  
+                </div>
+                <div class="form-group" *ngIf="control.type == 'CHECKBOX'">
+                    <div  *ngFor="let item of control.valueOptions; let i = index;" class="form-check form-check-inline">
+                        <input class="form-check-input"  type="checkbox"  value={{item.value}}  (change)="onCheckboxChange(i, control.field, $event)"  [(ngModel)]="item.selected" required={{control.required}} [ngModelOptions]="{standalone: true}" 
+                        id={{control.field}} name={{control.field}} #{{control.field}}="ngModel">
+                        <label class="form-check-label" for="">{{item.displayLabel}}</label>
+                    </div>
+                </div>
+                     <!-- <span class="help-block" *ngIf="!saveDynamicDataObj[control.field].valid && saveDynamicDataObj[control.field].touched">Please fill valid data</span> -->
+              
+
+                
+                <!-- Input type Block -->
+                <!-- <div class="form-group" *ngIf="control.fieldType == 'input'">
+                    <input type="text" class="form-control" [(ngModel)]="saveDynamicDataObj[control.field]" 
+                    [ngModelOptions]="{standalone: true}" id={{control.field}} name={{control.field}} #{{control.field}}="ngModel"
+                     [disabled]="control.saved" placeholder={{control.placeholder}}>
+                </div> -->
+            </div>
+            <button type="button" class="btn btn-primary" (click)="onSubmit(saveDynamicData)" [disabled]="!personalInformationForm.form.valid">Submit</button>
+            <!-- <button type="submit" class="btn btn-primary" [disabled]="!saveDynamicData.valid">Submit</button> -->
+            </form>
+    </div>
+</div>

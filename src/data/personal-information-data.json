@@ -1,0 +1,111 @@
+{
+   "fields":[
+      {
+         "displayLabel":"Candidate Name",
+         "field":"STATE",
+         "productSKUs":[
+            "INTCRM"
+         ],
+         "instructionText":"Enter Candidate Name",
+         "instructionHeader":"Name",
+         "dropdownPlaceHolder":"Select State",
+         "locations":[
+            {
+               "country":"US",
+               "locationType":"SEARCH",
+               "region":"NY",
+               "region2":"NY"
+            }
+         ],
+         "required":true,
+         "type":"DROPDOWN",
+         "validation":{
+            "label":"NAME",
+            "regex":[
+               "\\p{L}\\p{M}*'{0,1}[ ]{0,1}\\.{0,1}-{0,1}&{0,1}[ ]{0,1}"
+            ]
+         },
+         "valueOptions":[
+            {
+               "displayLabel":"Karnataka",
+               "value":"KA"
+            },
+            {
+               "displayLabel":"Gujarat",
+               "value":"GJ"
+            }
+         ],
+         "collectedValue":null
+      },
+      {
+         "displayLabel":"UK Data",
+         "field":"UK Data",
+         "productSKUs":[
+            "INTCRM"
+         ],
+         "instructionText":"UK Data",
+         "instructionHeader":"Name",
+         "dropdownPlaceHolder":"UK Data",
+         "locations":[
+            {
+               "country":"US",
+               "locationType":"SEARCH",
+               "region":"NY",
+               "region2":"NY"
+            }
+         ],
+         "required":true,
+         "type":"CHECKBOX",
+         "validation":{
+            "label":"NAME",
+            "regex":[
+               "\\p{L}\\p{M}*'{0,1}[ ]{0,1}\\.{0,1}-{0,1}&{0,1}[ ]{0,1}"
+            ]
+         },
+         "valueOptions":[
+            {
+               "displayLabel":"UK",
+               "value":"UK"
+            },
+            {
+               "displayLabel":"Non UK",
+               "value":"Non UK"
+            }
+         ],
+         "collectedValue":null
+      },
+      {
+         "displayLabel":"Name Text",
+         "field":"Name Text",
+         "productSKUs":[
+            "INTCRM"
+         ],
+         "instructionText":"Name Text",
+         "instructionHeader":"Name",
+         "dropdownPlaceHolder":"Name Text",
+         "locations":[
+            {
+               "country":"US",
+               "locationType":"SEARCH",
+               "region":"NY",
+               "region2":"NY"
+            }
+         ],
+         "required":true,
+         "type":"TEXT",
+         "validation":{
+            "label":"NAME",
+            "regex":[
+               "\\p{L}\\p{M}*'{0,1}[ ]{0,1}\\.{0,1}-{0,1}&{0,1}[ ]{0,1}"
+            ]
+         },
+         "valueOptions":[
+            
+         ],
+         "collectedValue":null
+      }
+   ],
+   "documentUploads":[
+      
+   ]
+}

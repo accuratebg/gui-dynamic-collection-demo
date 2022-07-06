@@ -1,0 +1,19 @@
+<div>
+    <h1 class="text-center">Document collection process</h1>
+    <p>You may return to this page at any time during the process.</p>
+    <div class="document-list">
+        <ul class="documentList list-group">
+            <li *ngFor="let document of documents.documentList" [ngClass]="{'not-allowed' : document.collectionStatus == 'collected'}">
+                <span class="block" (click)="collectDocument(document)" [ngClass]="{'disable' : document.collectionStatus == 'collected'}">
+                    <span class="taskName float-left">{{document.description}} </span>
+                    <span class="space float-left">-</span>
+                    <span class="collection-status float-left">
+                        <span *ngIf="document.collectionStatus == 'pending'">Pending</span>
+                        <span *ngIf="document.collectionStatus == 'inprogress'">InProgress</span>
+                        <span *ngIf="document.collectionStatus == 'collected'">Completed</span>
+                    </span>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

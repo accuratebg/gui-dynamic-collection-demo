@@ -1,115 +1,13 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document Collection</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <header>
-      <h3>Dynamic Document Collection</h3>
-    </header>
-
-    <section class="container">
-      <div class="nationality">
-        <label style="margin-right: 6.5em">Nationality</label>
-
-        <label for="UK" style="margin-right: 2em">
-          <input
-            type="radio"
-            id="UK"
-            value="UK"
-            name="selector"
-            onclick="onRadioUk();"
-          />
-          UK
-        </label>
-        <label for="NonUK">
-          <input
-            type="radio"
-            id="NonUK"
-            name="selector"
-            onclick="onRadioNonUK();"
-          />
-          Non UK
-        </label>
-      </div>
-
-      <section id="dropDownSection" class="hide">
-        <input
-          type="checkbox"
-          id="onCheck"
-          class="chkBtn"
-          disabled="disabled"
-          name="check"
-        />
-
-        <select
-          id="dropdownOpt1"
-          class="selectDoc"
-          name="GROUP1_DOCUMENT_SELECTION"
-          onchange="uploadSelectedDocument('uploadDoc',this);"
-        ></select>
-
-        <div id="uploadDoc">
-          <p></p>
-          <label
-            for="uploaded"
-            id="uploadButton"
-            class="btn fileUpload btn-default"
-          >
-            Upload
-            <input
-              type="file"
-              name="upload"
-              id="uploaded"
-              onchange="onFileUpload(this.value);"
-            />
-          </label>
-        </div>
-
-        <div id="subDropDown" class="hide">
-          <input
-            type="checkbox"
-            id="onCheck1"
-            class="chkBtn"
-            disabled="disabled"
-            name="check"
-          />
-
-          <select
-            id="dropdownOpt2"
-            class="selectDoc"
-            onchange="uploadSelectedDoc('uploadDoc1',this);"
-          ></select>
-          <div id="uploadDoc1">
-            <p></p>
-            <label
-              for="uploaded1"
-              id="uploadButton1"
-              class="btn fileUpload btn-default"
-              >Upload
-              <input
-                type="file"
-                name="upload"
-                id="uploaded1"
-                onchange="onFileUpload1(this.value);"
-              />
-            </label>
-          </div>
-        </div>
-      </section>
-      <div id="submitBtn">
-        <button id="onBtn" class="btnStyle hide" onclick="onSubmit();">
-          submit
-        </button>
-      </div>
-    </section>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-    <script type="text/javascript" src="/document.js"></script>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DocumentCollectionWebapp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
 </html>

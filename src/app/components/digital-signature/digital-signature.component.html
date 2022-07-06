@@ -1,0 +1,13 @@
+<p class="top-20">{{ title }}</p>
+<div class="signature-container">
+  <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+</div>
+
+<div class="buttons">
+  <!-- <button class="btn btn-primary" (click)="savePad()">Save</button> -->
+  <button class="btn btn-danger" *ngIf="showClearSignature" (click)="clearSignature()">Clear</button>
+</div>
+
+<!-- <div class="signature-image" *ngIf="signatureImg">
+  <img src='{{ displaySignatureImg }}' />
+</div> -->
