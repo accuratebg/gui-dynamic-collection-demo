@@ -17,14 +17,6 @@
             "type": "document"
         },
         {
-            "description": "Australia Document Collection",
-            "packageId": "Y9205327",
-            "id": "62b1966255f24c1661248660",
-            "required": true,
-            "collectionStatus": "pending",
-            "type": "document"
-        },
-        {
             "description": "Prefil PDF document - 1",
             "packageId": "Y9205327",
             "id": "62bc34177a45807aa2836783",

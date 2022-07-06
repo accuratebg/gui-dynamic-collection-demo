@@ -32,7 +32,8 @@ export class PersonalInformationComponent implements OnInit {
     } else {
       this.arr.splice(this.saveDynamicDataObj[field].indexOf(event.target.value), 1);
     }
-    this.saveDynamicDataObj[field] = this.arr;
+    let checkboxStringValue = JSON.stringify(this.arr);
+    this.saveDynamicDataObj[field] = checkboxStringValue;
   }
 
   
