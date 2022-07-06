@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators ,FormControl ,FormArray} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -11,23 +11,34 @@ import { CookieService } from 'ngx-cookie';
   styleUrls: ['./personal-information.component.scss']
 })
 export class PersonalInformationComponent implements OnInit {
+  
   dynamicFieldData: any = [];
   saveDynamicDataObj: any = [];
   saveDynamicData: any;
   //personalInformationForm: any;
 
-  constructor(private router: Router, public http: HttpClient, private spinner: NgxSpinnerService, private cookieService: CookieService) { }
+  constructor(private router: Router, public http: HttpClient, private spinner: NgxSpinnerService, fb: FormBuilder, private cookieService: CookieService)
+   { }
 
   ngOnInit(): void {
     this.spinner.show();
     this.getDynamicData();
   }
+    
+  arr: any = [];
+  onCheckboxChange(i: number, field: any, event: any) {
+    if (event.target.checked) {
+      this.arr.push(event.target.value);
+    } else {
+      this.arr.splice(this.saveDynamicDataObj[field].indexOf(event.target.value), 1);
+    }
+    this.saveDynamicDataObj[field] = this.arr;
+  }
 
-  onSubmit(data:any) {
+  
+
+   onSubmit(data:any) {
     this.spinner.show();
-    //this.saveDynamicDataObj;
-    //console.log(data);
-    //this.personalInformationForm;
     let dataPoints = [];
     for (const [key, value] of Object.entries(this.saveDynamicDataObj)) {
       console.log(key, value);
@@ -42,7 +53,7 @@ export class PersonalInformationComponent implements OnInit {
     }
 
     let obj = {
-      referenceId: "abcdefgh",
+      referenceId: "REFID234",
       platform: "ACCEL",
       dataPoints: dataPoints,
       application: "string"
@@ -50,7 +61,7 @@ export class PersonalInformationComponent implements OnInit {
     //let strObj = JSON.stringify(obj);
     //var formData: any = new FormData();
     //formData.append("documentSessionStepRequest", strObj);
-    //return;
+    console.log(obj);
     
     let url = "https://biz-search-requirements.dev.ablocal.io/v1/data";
     this.http.post(url, obj).subscribe((response:any) => {      
@@ -68,7 +79,7 @@ export class PersonalInformationComponent implements OnInit {
   getDynamicData() {
     let obj = {
       "companyCodes": [
-        "TEST12121212"
+        "TEST12121219"
       ],
       "dataType": "FIELD",
       "locale": "string",
@@ -77,7 +88,7 @@ export class PersonalInformationComponent implements OnInit {
           "country": "B",
           "locationType": "A",
           "region": "A",
-          "region2": "A"
+          "region2": "A"  
         }
       ],
       "platform": "string",
@@ -88,25 +99,8 @@ export class PersonalInformationComponent implements OnInit {
       "whoNeedsToInteract": "CANDIDATE"
     };
 
-    let obj1 = {
-      "referenceId":"abcdefgh",
-      "companyCodes":[
-         "TEST_COMPANY"
-      ],
-      "products":[
-         "TEST_SKU"
-      ],
-      "platform":"ACCEL",
-      "whoNeedsToInteract":"CANDIDATE",
-      "locations":[
-         {
-            "country":"IND",
-            "region":"TU",
-            "region2":"BE",
-            "locationType":"KA"
-         }
-      ]
-   };
+    let obj1 = {"companyCodes":["ACCU10123422"],"platform":"ACCEL","locale":"en_US","locations":[{"locationType":"SEARCH","country":"US","region":"NY","region2":"NY"}],"products":["INTCRM"], "referenceId": "REFID23421"};
+    
    
     //this.http.get('data/personal-information-data.json').subscribe((response:any) => {
     this.http.post('https://biz-search-requirements.dev.ablocal.io/v1/requirements', obj1).subscribe((response:any) => {
