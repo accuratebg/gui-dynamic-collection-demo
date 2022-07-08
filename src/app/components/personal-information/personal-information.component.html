@@ -13,7 +13,8 @@
                
                 <div class="form-group" *ngIf="control.type == 'RADIO_BUTTON'">
                     <div  *ngFor="let item of control.valueOptions;let i = index;"  class="form-group form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={{item.value}} />
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" [(ngModel)]="saveDynamicDataObj[control.field]" 
+                        [ngModelOptions]="{standalone: true}" #{{radio}}="ngModel" value={{item.value}} />
                         <label class="form-check-label" for="inlineRadio1">{{item.displayLabel}}</label>
                     </div>
                 </div>

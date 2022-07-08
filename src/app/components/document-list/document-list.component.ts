@@ -25,11 +25,16 @@ export class DocumentListComponent implements OnInit {
     var redirectedFrom = this.cookieService.get('redirectedFrom');
     if(redirectedFrom == 'documentPage'){
      var url = 'data/documentList-uk-completed.json';
-    } else if(redirectedFrom == 'pii'){
+    } else if(redirectedFrom == 'prefilPdfPage'){
+      var url = 'data/documentList-prefil-completed.json';
+     } else if(redirectedFrom == 'pii'){
       var url = 'data/documentList-pi-completed.json';
     } else {
       var url = 'data/documentList.json';
     }
+
+    //this.cookieService.remove('redirectedFrom');
+
     this.http.get(url).subscribe((res) => {
       setTimeout(() => {
         this.cookieService.remove('redirectedFrom');
@@ -42,6 +47,11 @@ export class DocumentListComponent implements OnInit {
   collectDocument(document: any){
     if(document.type == 'document'){
       console.log(document);
+      this.cookieService.put('redirectedFrom', 'documentPage');
+      this.router.navigateByUrl('/documents/'+ document.id);
+    } else if(document.type == 'prefilPdf'){
+      console.log(document);
+      this.cookieService.put('redirectedFrom', 'prefilPdfPage');
       this.router.navigateByUrl('/documents/'+ document.id);
     } else if(document.type == 'data') {
       console.log(document);

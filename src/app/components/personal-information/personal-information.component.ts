@@ -102,9 +102,36 @@ export class PersonalInformationComponent implements OnInit {
 
     let obj1 = {"companyCodes":["ACCU10123422"],"platform":"ACCEL","locale":"en_US","locations":[{"locationType":"SEARCH","country":"US","region":"NY","region2":"NY"}],"products":["INTCRM"], "referenceId": "REFID23421"};
     
+    let obj2 = {
+
+      "companyCodes":["ACC1"],
+
+      "platform":"ACCEL",
+
+      "locale":"en_US",
+
+      "locations":[
+
+            {"locationType":"SEARCH",
+
+            "country":"US",
+
+            "region":"NY",
+
+            "region2":"NY"
+
+          }
+
+        ],
+
+        "products":["INTCRM"],
+
+        "referenceId": "REFID23421"
+
+      };
    
     //this.http.get('data/personal-information-data.json').subscribe((response:any) => {
-    this.http.post('https://biz-search-requirements.dev.ablocal.io/v1/requirements', obj1).subscribe((response:any) => {
+    this.http.post('https://biz-search-requirements.dev.ablocal.io/v1/requirements', obj2).subscribe((response:any) => {
       
       setTimeout(() => {
         this.dynamicFieldData = response.fields;

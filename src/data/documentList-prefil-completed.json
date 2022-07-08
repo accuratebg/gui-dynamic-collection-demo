@@ -5,24 +5,24 @@
             "packageId": "Y9205327",
             "id": "62b05b0c67b9ca08366c6c9e",
             "required": true,
-            "collectionStatus": "collected",
+            "collectionStatus": "pending",
             "type": "data"
         },
         {
             "description": "United Kingdom ID Verification",
             "packageId": "Y9205327",
-            "id": "62bddbdc5a8d7d18345b7373",
+            "id": "62c58aa5f7f2406654254315",
             "required": true,
-            "collectionStatus": "collected",
+            "collectionStatus": "pending",
             "type": "document"
         },
         {
-            "description": "Prefil PDF document - 1",
+            "description": "Prefil PDF document",
             "packageId": "Y9205327",
-            "id": "62bc34177a45807aa2836783",
+            "id": "62c589eb9f46d36cc585bfcd",
             "required": true,
-            "collectionStatus": "completed",
-            "type": "document"
+            "collectionStatus": "collected",
+            "type": "prefilPdf"
         }
     ]
 }

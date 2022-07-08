@@ -1,6 +1,6 @@
 <div>
-    <h1 class="text-center">Document collection process</h1>
-    <p>You may return to this page at any time during the process.</p>
+    <h1 class="text-center bottom-30">Document collection process</h1>
+    <p class="bottom-20">You may return to this page at any time during the process.</p>
     <div class="document-list">
         <ul class="documentList list-group">
             <li *ngFor="let document of documents.documentList" [ngClass]="{'not-allowed' : document.collectionStatus == 'collected'}">
