@@ -20,6 +20,9 @@ import { PersonalInformationComponent } from './components/personal-information/
 import { DigitalSignatureComponent } from './components/digital-signature/digital-signature.component'; 
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { MustMatchDirective } from './directives/must-match.directive';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { MustMatchDirective } from './directives/must-match.directive';
     DynamicDocumentsComponent,
     PersonalInformationComponent,
     DigitalSignatureComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    ExamplePdfViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { MustMatchDirective } from './directives/must-match.directive';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     CookieModule.withOptions(),
-    SignaturePadModule
+    SignaturePadModule,
+    PdfViewerModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

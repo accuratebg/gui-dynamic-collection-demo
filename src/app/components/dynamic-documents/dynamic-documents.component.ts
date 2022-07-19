@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { CookieService } from 'ngx-cookie';
+import { pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
+//(<any>window).pdfWorkerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
 
 interface JsonFormValidators {
   min?: number;
@@ -61,6 +63,9 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   selectedOptionValue:any = {};
   signatureImage:any;
   selectStaticToken:any = false;
+  pdfSrc: any = '';
+  pdfSrcHardCoded: any = '';
+  showPdfView: any = false;
 
   public dynamicForm: FormGroup = this.fb.group({});
 
@@ -69,6 +74,9 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     console.log(this.dynamicFormData);
     this.dynamicFieldData = this.dynamicFormData;
+    pdfDefaultOptions.assetsFolder = 'assets';
+
+    this.pdfSrcHardCoded = '/data/F_Australia_AFP_Form.pdf';
     // if(this.dynamicFieldData.category == "PROOF_OF_ID"){
     //   this.showSubmitBtn = true;
     // }
@@ -255,6 +263,9 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
       console.log(this.dynamicFieldData);
       this.spinner.hide();
       this.changeDetection.detectChanges();
+    }, (error)=>{
+      console.log(error);
+      this.spinner.hide();
     });
   }
 
@@ -282,7 +293,8 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
   }
 
   goToNext(){
-    this.cookieService.put('redirectedFrom', 'documentPage');
+    //this.cookieService.put('redirectedFrom', 'documentPage');
+    //var redirectedFrom = this.cookieService.get('redirectedFrom');
     this.router.navigateByUrl('/document-list');
   }
 
@@ -303,6 +315,32 @@ export class DynamicDocumentsComponent implements OnChanges, OnInit {
     } else {
       this.showSubmitBtn = false;
     }
+  }
+
+  getPdfFile(file: any){
+    //this.pdfSrc = new Uint8Array(file);
+
+    // let pdfSrc = new Blob([file], { type: 'application/pdf' });            
+    // var fileURL = URL.createObjectURL(pdfSrc);
+    // this.pdfSrc = fileURL;
+    //this.pdfSrc = '';
+    var binary_string = window.atob(file);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i <len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    this.pdfSrc = file;
+    if(file){
+      this.showPdfView = true;
+    }
+    console.log(this.pdfSrc);
+
+    // var blob = new Blob([file], {type: "application/pdf"});
+    // var link = document.createElement("a");
+    // link.href = window.URL.createObjectURL(blob);
+    // link.download = "myFileName.pdf";
+    // link.click();
   }
 
 }

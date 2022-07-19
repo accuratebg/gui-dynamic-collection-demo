@@ -27,6 +27,7 @@ export class DocumentUploadComponent implements OnInit {
 
   getDocuments() {
     //completed id - 62b05b0c67b9ca08366c6c9e
+    //this.http.get('data/dynamic-documents-step-2.json').subscribe((res) => {
     this.http.get('https://biz-search-requirements.dev.ablocal.io/v1/document-session/' + this.sessionId).subscribe((res) => {
       this.documents = res;
       console.log(this.documents);
